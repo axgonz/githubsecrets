@@ -20,7 +20,7 @@ This sample provides concise steps to:
     ``` bash 
     az_subId="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     az_location="australiaeast"
-    az_rgName="nxfutil001"
+    az_rgName="Deployment001"
     az_msiName="GitHubActions"
 
     gh_org="xxxxxx"         # this repo's organization or your username 
