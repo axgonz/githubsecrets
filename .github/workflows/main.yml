@@ -1,5 +1,9 @@
 name: Login using OICD with an Azure Managed Identity (user assigned)
 
+permissions:
+      id-token: write
+      contents: read
+      
 on: 
   workflow_dispatch:
     inputs:
