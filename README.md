@@ -16,7 +16,14 @@ This sample provides concise steps to:
 1. Install Azure CLI [version 2.45.0](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) or newer and login.
 
     ``` bash
+    # Check version
+    az --version 
+
+    # Login
     az login
+
+    # Show active subscription
+    az account show
     ```
 
 1. Define these variables (change values as needed).
@@ -24,10 +31,10 @@ This sample provides concise steps to:
     ``` bash 
     az_subId="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     az_location="australiaeast"
-    az_rgName="Deployment001"
+    az_rgName="GitHubFederatedIdentities"
     az_msiName="GitHubActions"
 
-    gh_org="xxxxxx"         # this repo's organization or your username 
+    gh_org="xxxxxx"         # this repo's org or username 
     gh_repo="githubsecrets" # this repo's name
     ```
 
@@ -55,7 +62,7 @@ This sample provides concise steps to:
 
     ``` bash
     # Assign ARM permissions
-    az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId/resourceGroups/$az_rgName
+    az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId
     ```
 
     > Note: The permissions above are an example, use the least privileged approach when assigning permissions.
@@ -68,8 +75,14 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 
 ![GitHub workflow](https://github.com/axgonz/githubsecrets/actions/workflows/cicd.yml/badge.svg?branch=main)
 
-1. Use the JSON output from the pre-requisite steps to create a new `AZURE_MSI` GitHub Secret.
+1. Use the JSON output from the pre-requisite steps to create a new `AZURE_MSI` GitHub Secret, details in [GitHub Docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
+    **Name**
+    ``` json
+    AZURE_MSI
+    ```
+
+    **Value**
     ``` json
     {
         "clientId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx1111",
