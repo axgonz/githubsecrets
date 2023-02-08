@@ -13,6 +13,19 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
     
+    # Login
+    - name: 'Azure login'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    # Logout
+    - name: 'Azure logout'
+      run: |
+        az logout
+
     # Prase AZURE_MSI secret
     - name: Prase AZURE_MSI secret
       id: msiPrincipal
@@ -40,4 +53,20 @@ jobs:
         client-id: ${{ steps.msiPrincipal.outputs.clientId }}
         tenant-id: ${{ steps.msiPrincipal.outputs.tenantId }}
         subscription-id: ${{ steps.msiPrincipal.outputs.subscriptionId }}
+
+    # Logout
+    - name: 'Azure logout'
+      run: |
+        az logout
+
+    # Login
+    - name: 'Azure login'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # Logout
+    - name: 'Azure logout'
+      run: |
+        az logout        
         
