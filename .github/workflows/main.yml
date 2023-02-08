@@ -1,0 +1,31 @@
+name: Login using OICD with an Azure Managed Identity (user assigned)
+
+on: 
+  workflow_call:
+    inputs:
+      AZURE_SUBSCRIPTION_ID:
+        type: string
+        description: 'Azure subscription id'
+        required: true
+
+jobs:
+  validate_and_deploy:
+    runs-on: ubuntu-latest 
+    steps:
+    
+    # Login
+    - name: 'Azure login'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_MSI.clientId }}
+        tenant-id: ${{ secrets.AZURE_MSI.tenantId }}
+        subscription-id: ${{ inputs.AZURE_SUBSCRIPTION_ID }}
+        
+    # Get principalId from AZURE_MSI
+    - name: 'Get principal from AZURE_MSI'
+      id: msiPrincipal
+      run: |
+        az --version
+        objectId=$(az identity show --name ${{ secrets.AZURE_MSI.name }} --resource-group ${{ secrets.AZURE_MSI.resourceGroup }} --query principalId --output tsv)
+        echo setting objectId to $objectId
+        echo "objectId=$objectId" >> $GITHUB_OUTPUT    
