@@ -45,7 +45,7 @@ This sample provides concise steps to:
     az identity create --name $az_msiName --resource-group $az_rgName --subscription $az_subId
 
     # Federate with GitHub
-    az identity federated-credential create --name "$gh_org--$gh_repo" --identity-name $az_msiName --subject "repo:$gh_org/$gh_repo:ref:refs/heads/main" --issuer "https://token.actions.githubusercontent.com" --resource-group $az_rgName --subscription $az_subId 
+    az identity federated-credential create --name "${gh_org}--${gh_repo}" --identity-name $az_msiName --subject "repo:${gh_org}/${gh_repo}:ref:refs/heads/main" --issuer "https://token.actions.githubusercontent.com" --resource-group $az_rgName --subscription $az_subId 
 
     # Show details (needed to create the AZURE_MSI GitHub secret)
     az identity show --name $az_msiName --resource-group $az_rgName
@@ -58,6 +58,8 @@ This sample provides concise steps to:
     az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId/resourceGroups/$az_rgName
     ```
 
+    > Note: The permissions above are and example, use the least privileged approach when assigning permissions.
+
 ## Set up
 
 The following uses the provided GitHub workflows to build and deploy the sample.
@@ -67,6 +69,20 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 ![GitHub workflow](https://github.com/axgonz/azure-nextflow/actions/workflows/cicd.yml/badge.svg?branch=main)
 
 1. Use the JSON output from the pre-requisite steps to create a new `AZURE_MSI` GitHub Secret.
+
+    ``` json
+    {
+        "clientId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx1111",
+        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/nxfutil001/providers/Microsoft.ManagedIdentity/userAssignedIdentities/GitHubActions",
+        "location": "australiaeast",
+        "name": "GitHubActions",
+        "principalId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx2222",
+        "resourceGroup": "nxfutil001",
+        "tags": {},
+        "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx3333",
+        "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
+    }
+    ```
 
 1. Run the workflow called `Azure Managed Identity OIDC Login`.
 
