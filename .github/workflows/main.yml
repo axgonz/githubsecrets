@@ -14,24 +14,24 @@ jobs:
     steps:
     
     # Prase AZURE_MSI secret
-      - name: Prase AZURE_MSI secret
-        id: msiPrincipal
-        env:
-          AZURE_CREDENTIALS: 
-        run: |
-          clientId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["clientId"]')
-          tenantId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["tenantId"]')
-          subscriptionId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["id"] | split("/")[2]'
-          echo "::add-mask::$clientId"
-          echo "::add-mask::$tenantId"
-          echo "::add-mask::$subscriptionId"
-          echo clientId=$clientId >> $GITHUB_ENV
-          echo tenantId=$tenantId >> $GITHUB_ENV
-          echo subscriptionId=$subscriptionId >> $GITHUB_ENV
+    - name: Prase AZURE_MSI secret
+      id: msiPrincipal
+      env:
+        AZURE_CREDENTIALS: 
+      run: |
+        clientId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["clientId"]')
+        tenantId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["tenantId"]')
+        subscriptionId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["id"] | split("/")[2]'
+        echo "::add-mask::$clientId"
+        echo "::add-mask::$tenantId"
+        echo "::add-mask::$subscriptionId"
+        echo clientId=$clientId >> $GITHUB_ENV
+        echo tenantId=$tenantId >> $GITHUB_ENV
+        echo subscriptionId=$subscriptionId >> $GITHUB_ENV
 
-          principalId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["principalId"]')
-          echo setting objectId to $principalId
-          echo "objectId=$principalId" >> $GITHUB_OUTPUT    
+        principalId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["principalId"]')
+        echo setting objectId to $principalId
+        echo "objectId=$principalId" >> $GITHUB_OUTPUT    
 
     # Login
     - name: 'Azure login'
