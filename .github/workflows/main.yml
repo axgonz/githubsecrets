@@ -16,8 +16,6 @@ jobs:
     # Prase AZURE_MSI secret
     - name: Prase AZURE_MSI secret
       id: msiPrincipal
-      env:
-        AZURE_CREDENTIALS: 
       run: |
         clientId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["clientId"]')
         tenantId=$(echo ${{ secrets.AZURE_MSI }} | jq -r '.["tenantId"]')
