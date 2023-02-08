@@ -48,8 +48,6 @@ This sample provides concise steps to:
     az identity show --name $az_msiName --resource-group $az_rgName
     ```
 
-    > Important: The principal will need Contributor permission on the target resource group scope as a minimum.
-
 ## Set up
 
 The following uses the provided GitHub workflows to build and deploy the sample.
@@ -62,4 +60,4 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 
 1. Run the workflow called `Azure Managed Identity OIDC Login`.
 
-    <img src="./docs/GitHubWorkflow.png" width="300" alt="Running the GitHub Workflow">
+    <img src="./doc/GitHubWorkflow.png" width="300" alt="Running the GitHub Workflow">
