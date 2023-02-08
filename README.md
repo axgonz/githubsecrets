@@ -66,7 +66,7 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 
 ### Deploy using GitHub
 
-![GitHub workflow](https://github.com/axgonz/azure-nextflow/actions/workflows/cicd.yml/badge.svg?branch=main)
+![GitHub workflow](https://github.com/axgonz/githubsecrets/actions/workflows/cicd.yml/badge.svg?branch=main)
 
 1. Use the JSON output from the pre-requisite steps to create a new `AZURE_MSI` GitHub Secret.
 
