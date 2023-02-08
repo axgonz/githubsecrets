@@ -22,9 +22,9 @@ jobs:
         clientId=$(echo $SECRET | jq -r '.["clientId"]')
         tenantId=$(echo $SECRET | jq -r '.["tenantId"]')
         subscriptionId=$(echo $SECRET | jq -r '.["id"] | split("/")[2]')
-        echo "::add-mask::$clientId"
-        echo "::add-mask::$tenantId"
-        echo "::add-mask::$subscriptionId"
+        # echo "::add-mask::$clientId"
+        # echo "::add-mask::$tenantId"
+        # echo "::add-mask::$subscriptionId"
         echo clientId=$clientId >> $GITHUB_ENV
         echo tenantId=$tenantId >> $GITHUB_ENV
         echo subscriptionId=$subscriptionId >> $GITHUB_ENV
