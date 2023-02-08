@@ -22,15 +22,14 @@ jobs:
         clientId=$(echo $SECRET | jq -r '.["clientId"]')
         tenantId=$(echo $SECRET | jq -r '.["tenantId"]')
         subscriptionId=$(echo $SECRET | jq -r '.["id"] | split("/")[2]')
-        # echo "::add-mask::$clientId"
-        # echo "::add-mask::$tenantId"
-        # echo "::add-mask::$subscriptionId"
+        principalId=$(echo $SECRET | jq -r '.["principalId"]')
+        echo "::add-mask::$clientId"
+        echo "::add-mask::$tenantId"
+        echo "::add-mask::$subscriptionId"
+        echo "::add-mask::$principalId"
         echo clientId=$clientId >> $GITHUB_OUTPUT
         echo tenantId=$tenantId >> $GITHUB_OUTPUT
         echo subscriptionId=$subscriptionId >> $GITHUB_OUTPUT
-
-        principalId=$(echo $SECRET | jq -r '.["principalId"]')
-        echo setting objectId to $principalId
         echo "objectId=$principalId" >> $GITHUB_OUTPUT    
 
     # Login
