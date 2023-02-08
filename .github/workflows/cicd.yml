@@ -1,4 +1,4 @@
-name: Login using OICD with an Azure Managed Identity (user assigned)
+name: Azure Managed Identity OIDC Login
 
 permissions:
       id-token: write
@@ -26,15 +26,12 @@ jobs:
         clientId=$(echo $SECRET | jq -r '.["clientId"]')
         tenantId=$(echo $SECRET | jq -r '.["tenantId"]')
         subscriptionId=$(echo $SECRET | jq -r '.["id"] | split("/")[2]')
-        principalId=$(echo $SECRET | jq -r '.["principalId"]')
         echo "::add-mask::$clientId"
         echo "::add-mask::$tenantId"
         echo "::add-mask::$subscriptionId"
-        echo "::add-mask::$principalId"
         echo clientId=$clientId >> $GITHUB_OUTPUT
         echo tenantId=$tenantId >> $GITHUB_OUTPUT
         echo subscriptionId=$subscriptionId >> $GITHUB_OUTPUT
-        echo "objectId=$principalId" >> $GITHUB_OUTPUT    
 
     # Login
     - name: 'Azure login'
@@ -48,3 +45,4 @@ jobs:
     - name: 'Azure logout'
       run: |
         az logout
+      if: always()
