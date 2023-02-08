@@ -58,7 +58,7 @@ This sample provides concise steps to:
     az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId/resourceGroups/$az_rgName
     ```
 
-    > Note: The permissions above are and example, use the least privileged approach when assigning permissions.
+    > Note: The permissions above are an example, use the least privileged approach when assigning permissions.
 
 ## Set up
 
@@ -90,7 +90,7 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 
 ### Validate deployment
 
-This workflow in this sample authenticates and does not deploy anything to the resource group. 
+The workflow in this sample just authenticates and does not deploy anything to the resource group. 
 
 To validate the authentication was successful, check the workflow completed with a successful status:
 
