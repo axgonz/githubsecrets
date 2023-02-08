@@ -64,7 +64,7 @@ This sample provides concise steps to:
 
 The following uses the provided GitHub workflows to build and deploy the sample.
 
-## Deploy using GitHub
+### Deploy using GitHub
 
 ![GitHub workflow](https://github.com/axgonz/azure-nextflow/actions/workflows/cicd.yml/badge.svg?branch=main)
 
@@ -87,3 +87,11 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 1. Run the workflow called `Azure Managed Identity OIDC Login`.
 
     <img src="./doc/GitHubWorkflow.png" width="300" alt="Running the GitHub Workflow">
+
+### Validate deployment
+
+This workflow in this sample authenticates and does not deploy anything to the resource group. 
+
+To validate the authentication was successful, check the workflow completed with a successful status:
+
+<img src="./doc/GitHubWorkflowStatus.png" width="500" alt="Running the GitHub Workflow Success">    
