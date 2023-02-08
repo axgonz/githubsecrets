@@ -78,7 +78,7 @@ The following uses the provided GitHub workflows to build and deploy the sample.
 1. Use the JSON output from the pre-requisite steps to create a new `AZURE_MSI` GitHub Secret, details in [GitHub Docs](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
     **Name**
-    ``` json
+    ```
     AZURE_MSI
     ```
 
