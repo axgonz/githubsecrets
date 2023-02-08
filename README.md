@@ -38,7 +38,7 @@ This sample provides concise steps to:
     gh_repo="githubsecrets" # this repo's name
     ```
 
-1. Create target Resource Group.
+1. Create target Resource Group for the Managed Identity.
 
     ``` bash
     # Create Resource Group
