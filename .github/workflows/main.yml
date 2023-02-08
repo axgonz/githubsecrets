@@ -1,7 +1,7 @@
 name: Login using OICD with an Azure Managed Identity (user assigned)
 
 on: 
-  workflow_call:
+  workflow_dispatch:
     inputs:
       AZURE_SUBSCRIPTION_ID:
         type: string
