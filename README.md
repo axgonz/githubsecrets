@@ -90,7 +90,7 @@ The following uses the provided GitHub workflows to build and deploy the sample.
         "location": "australiaeast",
         "name": "GitHubActions",
         "principalId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx2222",
-        "resourceGroup": "nxfutil001",
+        "resourceGroup": "GitHubFederatedIdentities",
         "tags": {},
         "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx3333",
         "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
