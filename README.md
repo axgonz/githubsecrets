@@ -13,7 +13,11 @@ This sample provides concise steps to:
 
 1. Fork this repository on GitHub.
 
-1. Install Azure CLI [version 2.45.0](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) or newer.
+1. Install Azure CLI [version 2.45.0](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) or newer and login.
+
+    ``` bash
+    az login
+    ```
 
 1. Define these variables (change values as needed).
 
@@ -40,14 +44,18 @@ This sample provides concise steps to:
     # Create MSI
     az identity create --name $az_msiName --resource-group $az_rgName --subscription $az_subId
 
-    # Assign ARM permissions
-    az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId/resourceGroups/$az_rgName
-
     # Federate with GitHub
     az identity federated-credential create --name "$gh_org--$gh_repo" --identity-name $az_msiName --subject "repo:$gh_org/$gh_repo:ref:refs/heads/main" --issuer "https://token.actions.githubusercontent.com" --resource-group $az_rgName --subscription $az_subId 
 
     # Show details (needed to create the AZURE_MSI GitHub secret)
     az identity show --name $az_msiName --resource-group $az_rgName
+    ```
+
+1. Assign ARM permissions to the Managed Identity
+
+    ``` bash
+    # Assign ARM permissions
+    az role assignment create --assignee $az_msiName --role 'Contributor' --scope /subscriptions/$az_subId/resourceGroups/$az_rgName
     ```
 
 ## Set up
