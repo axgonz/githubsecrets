@@ -25,26 +25,13 @@ jobs:
         # echo "::add-mask::$clientId"
         # echo "::add-mask::$tenantId"
         # echo "::add-mask::$subscriptionId"
-        echo clientId=$clientId >> $GITHUB_ENV
-        echo tenantId=$tenantId >> $GITHUB_ENV
-        echo subscriptionId=$subscriptionId >> $GITHUB_ENV
+        echo clientId=$clientId >> $GITHUB_OUTPUT
+        echo tenantId=$tenantId >> $GITHUB_OUTPUT
+        echo subscriptionId=$subscriptionId >> $GITHUB_OUTPUT
 
         principalId=$(echo $SECRET | jq -r '.["principalId"]')
         echo setting objectId to $principalId
         echo "objectId=$principalId" >> $GITHUB_OUTPUT    
-
-    # Login
-    - name: 'Azure login'
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ steps.msiPrincipal.outputs.subscriptionId }}
-
-    # Logout
-    - name: 'Azure logout'
-      run: |
-        az logout
 
     # Login
     - name: 'Azure login'
@@ -58,15 +45,3 @@ jobs:
     - name: 'Azure logout'
       run: |
         az logout
-
-    # Login
-    - name: 'Azure login'
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    # Logout
-    - name: 'Azure logout'
-      run: |
-        az logout        
-        
