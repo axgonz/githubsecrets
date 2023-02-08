@@ -11,6 +11,8 @@ This sample provides concise steps to:
 
 ## Pre-requisites
 
+1. Fork this repository on GitHub.
+
 1. Install Azure CLI [version 2.45.0](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) or newer.
 
 1. Define these variables (change values as needed).
