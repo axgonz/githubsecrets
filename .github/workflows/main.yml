@@ -21,7 +21,7 @@ jobs:
       run: |
         clientId=$(echo $SECRET | jq -r '.["clientId"]')
         tenantId=$(echo $SECRET | jq -r '.["tenantId"]')
-        subscriptionId=$(echo $SECRET | jq -r '.["id"] | split("/")[2]'
+        subscriptionId=$(echo $SECRET | jq -r '.["id"] | split("/")[2]')
         echo "::add-mask::$clientId"
         echo "::add-mask::$tenantId"
         echo "::add-mask::$subscriptionId"
