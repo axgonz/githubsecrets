@@ -2,6 +2,10 @@
 
 Demonstrate how GitHub Secrets can be used to simplify Azure OIDC login.
 
+This uses a Managed Identity with [Workload Identity Federation](https://learn.microsoft.com/en-us/azure/active-directory/workload-identities/workload-identity-federation) and doesn't require any VM workers in Azure.
+
+> Note: This is [comming soon](https://learn.microsoft.com/en-us/azure/devops/release-notes/roadmap/2022/secret-free-deployments) to DevOps.
+
 ## Overview
 
 This sample provides concise steps to:
